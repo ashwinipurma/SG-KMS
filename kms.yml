@@ -16,46 +16,46 @@ Resources:
               AWS: 'arn:aws:iam::372179755649:root'
             Action: 'kms:*'
             Resource: '*'
-          # - Sid: Enable IAM User Permissions
-          #   Effect: Allow
-          #   Principal:
-          #     AWS: 'arn:aws:iam::372179755649:role/ash-kms-CodeBuildServiceRole-1KLG1H73AFQ79'
-          #   Action:
-          #     - kms:Create*
-          #     - kms:Describe*
-          #     - kms:Enable*
-          #     - kms:List*
-          #     - kms:Put*
-          #     - kmzs:Update*
-          #     - kms:Revoke*
-          #     - kms:Disable*
-          #     - kms:Get*
-          #     - kms:Delete*
-          #     - kms:ScheduleKeyDeletion
-          #     - kms:CancelKeyDeletion
-          #     - kms:Encrypt
-          #   Resource: "*"
-          # - Sid: Allow use of the key
-          #   Effect: Allow
-          #   Principal:
-          #     AWS: 'arn:aws:iam::372179755649:root'
-          #   Action:
-          #     - 'kms:DescribeKey'
-          #     - 'kms:Encrypt'
-          #     - 'kms:Decrypt'
-          #     - 'kms:ReEncrypt*'
-          #     - 'kms:GenerateDataKey'
-          #     - 'kms:GenerateDataKeyWithoutPlaintext'
-          #   Resource: '*'            
-          # - Sid: Enable IAM User Permissions
-          #   Effect: Allow
-          #   Principal:
-          #     AWS: arn:aws:iam::372179755649:root
-          #   Action:
-          #     - kms:List*
-          #     - kms:Get*
-          #     - kms:Encrypt
-          #   Resource: "*"
+          - Sid: Enable IAM User Permissions
+            Effect: Allow
+            Principal:
+              AWS: 'arn:aws:iam::372179755649:role/ash-kms-CodeBuildServiceRole-1KLG1H73AFQ79'
+            Action:
+              - kms:Create*
+              - kms:Describe*
+              - kms:Enable*
+              - kms:List*
+              - kms:Put*
+              - kmzs:Update*
+              - kms:Revoke*
+              - kms:Disable*
+              - kms:Get*
+              - kms:Delete*
+              - kms:ScheduleKeyDeletion
+              - kms:CancelKeyDeletion
+              - kms:Encrypt
+            Resource: "*"
+          - Sid: Allow use of the key
+            Effect: Allow
+            Principal:
+              AWS: 'arn:aws:iam::372179755649:root'
+            Action:
+              - 'kms:DescribeKey'
+              - 'kms:Encrypt'
+              - 'kms:Decrypt'
+              - 'kms:ReEncrypt*'
+              - 'kms:GenerateDataKey'
+              - 'kms:GenerateDataKeyWithoutPlaintext'
+            Resource: '*'            
+          - Sid: Enable IAM User Permissions
+            Effect: Allow
+            Principal:
+              AWS: arn:aws:iam::372179755649:root
+            Action:
+              - kms:List*
+              - kms:Get*
+              - kms:Encrypt
+            Resource: "*"
             
           # - Sid: Allow access for Key Administrators
           #   Effect: Allow
