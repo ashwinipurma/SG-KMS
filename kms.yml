@@ -12,7 +12,7 @@ Resources:
           - Sid: Enable IAM User Permissions
             Effect: Allow
             Principal:
-              AWS: arn:aws:iam::372179755649:root/ASH
+              AWS:arn:aws:iam::372179755649:root
             Action:
               - kms:Create*
               - kms:Describe*
