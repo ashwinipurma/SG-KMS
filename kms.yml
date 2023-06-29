@@ -7,7 +7,7 @@ Resources:
       Enabled: True
       KeyPolicy:
         Version: '2012-10-17'
-        Id: key-consolepolicy-3
+        Id: "key-consolepolicy-3"
         Statement:
           - Sid: Enable IAM User Permissions
             Effect: Allow
