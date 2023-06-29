@@ -1,13 +1,14 @@
 AWSTemplateFormatVersion: 2010-09-09
 Resources:
-  KMSKey:
+  myKey:
     Type: 'AWS::KMS::Key'
     Properties:
-      Description: Key for Lambda function 
-      Enabled: True
+      Description: An example symmetric encryption KMS key
+      EnableKeyRotation: true
+      PendingWindowInDays: 20
       KeyPolicy:
-        Version: '2012-10-17'
-        Id: "key-consolepolicy-3"
+        Version: 2012-10-17
+        Id: key-default-1
         Statement:
           - Sid: Enable IAM User Permissions
             Effect: Allow
@@ -18,7 +19,7 @@ Resources:
           - Sid: Enable IAM User Permissions
             Effect: Allow
             Principal:
-              AWS: 'arn:aws:iam::372179755649:root'
+              AWS: 'arn:aws:iam::372179755649:role/ash-kms-CodeBuildServiceRole-1KLG1H73AFQ79'
             Action:
               - kms:Create*
               - kms:Describe*
@@ -34,27 +35,27 @@ Resources:
               - kms:CancelKeyDeletion
               - kms:Encrypt
             Resource: "*"
-          - Sid: Allow use of the key
-            Effect: Allow
-            Principal:
-              AWS: 'arn:aws:iam::372179755649:root'
-            Action:
-              - 'kms:DescribeKey'
-              - 'kms:Encrypt'
-              - 'kms:Decrypt'
-              - 'kms:ReEncrypt*'
-              - 'kms:GenerateDataKey'
-              - 'kms:GenerateDataKeyWithoutPlaintext'
-            Resource: '*'            
-          - Sid: Enable IAM User Permissions
-            Effect: Allow
-            Principal:
-              AWS: arn:aws:iam::372179755649:root
-            Action:
-              - kms:List*
-              - kms:Get*
-              - kms:Encrypt
-            Resource: "*"
+          # - Sid: Allow use of the key
+          #   Effect: Allow
+          #   Principal:
+          #     AWS: 'arn:aws:iam::372179755649:root'
+          #   Action:
+          #     - 'kms:DescribeKey'
+          #     - 'kms:Encrypt'
+          #     - 'kms:Decrypt'
+          #     - 'kms:ReEncrypt*'
+          #     - 'kms:GenerateDataKey'
+          #     - 'kms:GenerateDataKeyWithoutPlaintext'
+          #   Resource: '*'            
+          # - Sid: Enable IAM User Permissions
+          #   Effect: Allow
+          #   Principal:
+          #     AWS: arn:aws:iam::372179755649:root
+          #   Action:
+          #     - kms:List*
+          #     - kms:Get*
+          #     - kms:Encrypt
+          #   Resource: "*"
             
           # - Sid: Allow access for Key Administrators
           #   Effect: Allow
