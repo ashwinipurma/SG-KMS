@@ -56,6 +56,13 @@ Resources:
               - kms:Get*
               - kms:Encrypt
             Resource: "*"
+            
+          - Sid: Allow access for Key Administrators
+            Effect: Allow
+            Principal: 
+               AWS: arn:aws:iam::372179755649:role/kms_codebuild
+            Resource: "*"   
+              
   
   WebServerKMSSecurityGroup:
     Type: 'AWS::EC2::SecurityGroup'
