@@ -1,7 +1,7 @@
 AWSTemplateFormatVersion: 2010-09-09
 Resources:
   KMSKey:
-    Type: AWS::KMS::Key
+    Type: 'AWS::KMS::Key'
     Properties:
       Description: Key for Lambda function 
       Enabled: True
@@ -12,7 +12,13 @@ Resources:
           - Sid: Enable IAM User Permissions
             Effect: Allow
             Principal:
-              AWS:arn:aws:iam::372179755649:root
+              AWS: 'arn:aws:iam::372179755649:root'
+            Action: 'kms:*'
+            Resource: '*'
+          - Sid: Enable IAM User Permissions
+            Effect: Allow
+            Principal:
+              AWS: 'arn:aws:iam::372179755649:root'
             Action:
               - kms:Create*
               - kms:Describe*
@@ -28,40 +34,33 @@ Resources:
               - kms:CancelKeyDeletion
               - kms:Encrypt
             Resource: "*"
+          - Sid: Allow use of the key
+            Effect: Allow
+            Principal:
+              AWS: 'arn:aws:iam::372179755649:root'
+            Action:
+              - 'kms:DescribeKey'
+              - 'kms:Encrypt'
+              - 'kms:Decrypt'
+              - 'kms:ReEncrypt*'
+              - 'kms:GenerateDataKey'
+              - 'kms:GenerateDataKeyWithoutPlaintext'
+            Resource: '*'            
           - Sid: Enable IAM User Permissions
             Effect: Allow
             Principal:
               AWS: arn:aws:iam::372179755649:root
-            Action:
-              - kms:Create*
-              - kms:Describe*
-              - kms:Enable*
-              - kms:List*
-              - kms:Put*
-              - kmzs:Update*
-              - kms:Revoke*
-              - kms:Disable*
-              - kms:Get*
-              - kms:Delete*
-              - kms:ScheduleKeyDeletion
-              - kms:CancelKeyDeletion
-              - kms:Encrypt
-            Resource: "*"
-          - Sid: Enable IAM User Permissions
-            Effect: Allow
-            Principal:
-              AWS: arn:aws:iam::372179755649:root/ASH
             Action:
               - kms:List*
               - kms:Get*
               - kms:Encrypt
             Resource: "*"
             
-          - Sid: Allow access for Key Administrators
-            Effect: Allow
-            Principal: 
-               AWS: arn:aws:iam::372179755649:role/kms_codebuild
-            Resource: "*"   
+          # - Sid: Allow access for Key Administrators
+          #   Effect: Allow
+          #   Principal: 
+          #      AWS: arn:aws:iam::372179755649:role/kms_codebuild
+          #   Resource: "*"   
               
   
   WebServerKMSSecurityGroup:
