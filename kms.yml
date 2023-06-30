@@ -1,69 +1,5 @@
 AWSTemplateFormatVersion: 2010-09-09
 Resources:
-  myKey:
-    Type: 'AWS::KMS::Key'
-    Properties:
-      Description: An example symmetric encryption KMS key
-      EnableKeyRotation: true
-      PendingWindowInDays: 20
-      KeyPolicy:
-        Version: 2012-10-17
-        Id: key-default-1
-        Statement:
-          - Sid: Enable IAM User Permissions
-            Effect: Allow
-            Principal:
-              AWS: 'arn:aws:iam::372179755649:root'
-            Action: 'kms:*'
-            Resource: '*'
-          - Sid: Enable IAM User Permissions
-            Effect: Allow
-            Principal:
-              AWS: 'arn:aws:iam::372179755649:role/ash-kms-CodeBuildServiceRole-1KLG1H73AFQ79'
-            Action:
-              - kms:Create*
-              - kms:Describe*
-              - kms:Enable*
-              - kms:List*
-              - kms:Put*
-              - kmzs:Update*
-              - kms:Revoke*
-              - kms:Disable*
-              - kms:Get*
-              - kms:Delete*
-              - kms:ScheduleKeyDeletion
-              - kms:CancelKeyDeletion
-              - kms:Encrypt
-            Resource: "*"
-          - Sid: Allow use of the key
-            Effect: Allow
-            Principal:
-              AWS: 'arn:aws:iam::372179755649:root'
-            Action:
-              - 'kms:DescribeKey'
-              - 'kms:Encrypt'
-              - 'kms:Decrypt'
-              - 'kms:ReEncrypt*'
-              - 'kms:GenerateDataKey'
-              - 'kms:GenerateDataKeyWithoutPlaintext'
-            Resource: '*'            
-          - Sid: Enable IAM User Permissions
-            Effect: Allow
-            Principal:
-              AWS: arn:aws:iam::372179755649:root
-            Action:
-              - kms:List*
-              - kms:Get*
-              - kms:Encrypt
-            Resource: "*"
-            
-          # - Sid: Allow access for Key Administrators
-          #   Effect: Allow
-          #   Principal: 
-          #      AWS: arn:aws:iam::372179755649:role/kms_codebuild
-          #   Resource: "*"   
-              
-  
   WebServerKMSSecurityGroup:
     Type: 'AWS::EC2::SecurityGroup'
     Properties:
@@ -80,75 +16,53 @@ Resources:
         FromPort: 22
         IpProtocol: tcp
         ToPort: 22
-        
-            
-  # MyKmsKey:
-  #   KeyPolicy:
-  #   Version: 2012-10-17
-  #   Statement:
-  #     - Effect: Allow
-  #       Action: kms:*
-  #       Resource: "*"
 
-  # MyKmsKey:
-  #   Type: AWS::KMS::Key
-  #   Properties:
-  #     Description: My KMS key
-  #     KeyPolicy:
-  #       Version: "2012-10-17"
-  #       Id: key-default-1
-  #       Statement:
-  #         - Sid: Enable IAM User Permissions
-  #           Effect: Allow
-  #           Principal:
-  #             AWS: arn:aws:iam::372179755649:root
-  #           Action: 'kms:*'
-  #           Resource: "*"
-  #         - Sid: Allow administration of the key
-  #           Effect: Allow
-  #           Principal:
-  #             AWS: arn:aws:iam::372179755649:root
-  #           Action:
-  #             - kms:Create*
-  #             - kms:Describe*
-  #             - kms:Enable*
-  #             - kms:List*
-  #             - kms:Put*
-  #             - kms:Update*
-  #             - kms:Revoke*
-  #             - kms:Disable*
-  #             - kms:Get*
-  #             - kms:Delete*
-  #             - kms:TagResource
-  #             - kms:UntagResource
-  #           Resource: "*"
-  #         - Sid: Allow use of the key
-  #           Effect: Allow
-  #           Principal:
-  #             AWS: arn:aws:iam::372179755649:root
-  #           Action:
-  #             - kms:Encrypt
-  #             - kms:Decrypt
-  #             - kms:ReEncrypt*
-  #             - kms:GenerateDataKey*
-  #             - kms:DescribeKey
-  #             - kms:CreateKey
-  #           Resource: "*"
+  myKey:
+    Type: 'AWS::KMS::Key'
+    Properties:
+        Description: An example symmetric encryption KMS key
+        EnableKeyRotation: true
+        PendingWindowInDays: 20
+        Enabled: true
+        EnableKeyRotation: false
+        KeySpec: SYMMETRIC_DEFAULT
 
-
-        # KeyPolicy:
-        #   Version: "2012-10-17"
-        #   Id: "DlmKmsKeyPolicy"
-        #   Statement:
-        #     - Sid: "Multi-region KMS key for encrypting DLM AMIs"
-        #       Effect: "Allow"
-        #       Principal:
-        #         AWS:
-        #           Fn::Join:
-        #             - ""
-        #             -
-        #               - "arn:aws:iam::"
-        #               - Ref: "AWS::AccountId"
-        #               - ":root"
-        #       Action: "kms:*"
-        #       Resource: "*"
+        KeyPolicy:
+          Version: 2012-10-17
+          Id: key-default-1
+          Statement:
+            - Sid: Enable IAM User Permissions
+              Effect: Allow
+              Principal:
+                AWS: 'arn:aws:iam::372179755649:root
+              Action: 'kms:*'
+              Resource: '*'
+            - Sid: Allow administration of the key
+              Effect: Allow
+              Principal:
+                AWS: 'arn:aws:iam::372179755649:root'
+              Action:
+                - 'kms:Create*'
+                - 'kms:Describe*'
+                - 'kms:Enable*'
+                - 'kms:List*'
+                - 'kms:Put*'
+                - 'kms:Update*'
+                - 'kms:Revoke*'
+                - 'kms:Disable*'
+                - 'kms:Get*'
+                - 'kms:Delete*'
+                - 'kms:TagResource*'
+                - 'kms:UntagResource*'
+              Resource: '*'
+            - Sid: Allow use of the key
+              Effect: Allow
+              Principal:
+                AWS: 'arn:aws:iam::372179755649:root'
+              Action:
+                - 'kms:DescribeKey'
+                - 'kms:Encrypt'
+                - 'kms:Decrypt'
+                - 'kms:ReEncrypt*'
+                - 'kms:GenerateDataKey'
+              Resource: '*'        
