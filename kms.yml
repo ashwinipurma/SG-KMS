@@ -65,4 +65,5 @@ Resources:
                 - 'kms:Decrypt'
                 - 'kms:ReEncrypt*'
                 - 'kms:GenerateDataKey'
+                - 'kms:Create*' 
             Resource: '*'        
