@@ -20,28 +20,28 @@ Resources:
   myKey:
     Type: 'AWS::KMS::Key'
     Properties:
-        Description: An example symmetric encryption KMS key
-        EnableKeyRotation: true
-        PendingWindowInDays: 20
-        Enabled: true
-        EnableKeyRotation: false
-        KeySpec: SYMMETRIC_DEFAULT
+      Description: An example symmetric encryption KMS key
+      EnableKeyRotation: true
+      PendingWindowInDays: 20
+      Enabled: true
+      EnableKeyRotation: false
+      KeySpec: SYMMETRIC_DEFAULT
 
-        KeyPolicy:
-          Version: 2012-10-17
-          Id: key-default-1
-          Statement:
-            - Sid: Enable IAM User Permissions
-              Effect: Allow
-              Principal:
-                AWS: 'arn:aws:iam::372179755649:root
-              Action: 'kms:*'
-              Resource: '*'
-            - Sid: Allow administration of the key
-              Effect: Allow
-              Principal:
-                AWS: 'arn:aws:iam::372179755649:root'
-              Action:
+      KeyPolicy:
+        Version: 2012-10-17
+        Id: key-default-1
+        Statement:
+          - Sid: Enable IAM User Permissions
+            Effect: Allow
+            Principal:
+              AWS: 'arn:aws:iam::372179755649:root'
+            Action: 'kms:*'
+            Resource: '*'
+          - Sid: Allow administration of the key
+            Effect: Allow
+            Principal:
+              AWS: 'arn:aws:iam::372179755649:root'
+            Action:
                 - 'kms:Create*'
                 - 'kms:Describe*'
                 - 'kms:Enable*'
@@ -54,15 +54,15 @@ Resources:
                 - 'kms:Delete*'
                 - 'kms:TagResource*'
                 - 'kms:UntagResource*'
-              Resource: '*'
-            - Sid: Allow use of the key
-              Effect: Allow
-              Principal:
+            Resource: '*'
+          - Sid: Allow use of the key
+            Effect: Allow
+            Principal:
                 AWS: 'arn:aws:iam::372179755649:root'
-              Action:
+            Action:
                 - 'kms:DescribeKey'
                 - 'kms:Encrypt'
                 - 'kms:Decrypt'
                 - 'kms:ReEncrypt*'
                 - 'kms:GenerateDataKey'
-              Resource: '*'        
+            Resource: '*'        
