@@ -8,7 +8,7 @@ phases:
     commands:
       - echo Build started on `date`
       - aws cloudformation validate-template --template-body file://kms.yml
-      - aws cloudformation create-stack --stack-name myteststack --template-body file://kms.yml
+      - aws cloudformation deploy --stack-name myteststack --template-body file://kms.yml
       
   post_build:
     commands:
