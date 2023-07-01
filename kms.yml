@@ -42,7 +42,6 @@ Resources:
             Principal:
               AWS: 'arn:aws:iam::372179755649:root'
             Action:
-              - 'kms:Create*'
               - 'kms:Describe*'
               - 'kms:Enable*'
               - 'kms:List*'
